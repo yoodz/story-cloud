@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/storyList/storyList",
+    "pages/addStory/addStory",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "你一言 我一语",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "广场",
+        "pagePath": "pages/storyList/storyList"
+      },
+      {
+        "text": " 添加故事",
+        "pagePath": "pages/addStory/addStory"
+      },
+      {
+        "text": " 我的",
+        "pagePath": "pages/mine/mine"
+      }
+    ]
+  }
+}
