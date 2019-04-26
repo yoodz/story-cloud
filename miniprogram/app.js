@@ -13,27 +13,11 @@ App({
       name: 'login',
       data: {},
       success: res => {
+        this.globalData.openid = res.result.openid
         console.log('[云函数] [login] user openid: ', res.result.openid)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-
-    wx.login({
-      success(res) {
-        if (res.code) {
-          console.log(res.code)
-          // 发起网络请求
-          wx.request({
-            url: 'https://test.com/onLogin',
-            data: {
-              code: res.code
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
       }
     })
 

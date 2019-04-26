@@ -1,3 +1,6 @@
 <view>
-<button bindtap='createStory'>新增</button>
+  <view wx:for="{{storyList}}">
+    {{item.title}}
+  </view>
+  <button bindtap='createStory'>新增</button>
 </view>

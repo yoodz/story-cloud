@@ -1,11 +1,14 @@
 // pages/myStoryList/myStoryList.js
+const app = getApp()
+const db = wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    storyList: []
   },
 
   /**
@@ -32,7 +35,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    db.collection('story').where({ '_openid': app.globalData.openId})
+      .get({
+        success(res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log(res.data)
+          that.setData({
+            storyList: res.data
+          })
+        }
+      })
   },
 
   /**
