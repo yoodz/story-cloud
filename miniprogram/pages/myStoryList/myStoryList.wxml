@@ -1,0 +1,3 @@
+<view>
+<button bindtap='createStory'>新增</button>
+</view>

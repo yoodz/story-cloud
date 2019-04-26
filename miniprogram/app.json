@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/storyList/storyList",
-    "pages/addStory/addStory",
     "pages/index/index",
+    "pages/storyList/storyList",
+    "pages/myStoryList/myStoryList",
+    "pages/addStory/addStory",
+    "pages/storyDetail/storyDetail",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -26,7 +28,7 @@
       },
       {
         "text": " 添加故事",
-        "pagePath": "pages/addStory/addStory"
+        "pagePath": "pages/myStoryList/myStoryList"
       },
       {
         "text": " 我的",
