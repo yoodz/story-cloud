@@ -8,7 +8,8 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    imgUrl: 'http://tmp/wx0824cd9111deab65.o6zAJsxfaSqzTAfSIrCXqYJKIEOM.74y7DI0R4Uygedb8c2da32095792c113b42d433991c0.jpg'
   },
 
   onLoad: function() {
@@ -58,8 +59,6 @@ Page({
   },
 
   create () {
-    console.log(1111111)
-
     db.collection('story').add({
       // data 字段表示需新增的 JSON 数据
       data: {
@@ -114,21 +113,22 @@ Page({
 
   // 上传图片
   doUpload: function () {
+    let that = this
     // 选择图片
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
-
+        console.log(res)
         wx.showLoading({
           title: '上传中',
         })
 
         const filePath = res.tempFilePaths[0]
-        
+        let randomFileName = Math.random().toString(36).substr(2) + new Date().getTime()
         // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
+        const cloudPath = randomFileName + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
           cloudPath,
           filePath,
@@ -138,10 +138,15 @@ Page({
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
+            console.log(that)
+            that.setData({
+              imgUrl: app.globalData.imagePath
             })
+            // wx.navigateTo({
+            //   url: '../storageConsole/storageConsole'
+            // })
+            console.log('success')
+
           },
           fail: e => {
             console.error('[上传文件] 失败：', e)
@@ -151,6 +156,7 @@ Page({
             })
           },
           complete: () => {
+            console.log('complete')
             wx.hideLoading()
           }
         })

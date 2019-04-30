@@ -25,7 +25,6 @@
     </view>
   </view>
 
-
   <!-- 操作数据库 -->
   <view class="uploader">
     <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">

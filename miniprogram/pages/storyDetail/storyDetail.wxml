@@ -1,11 +1,14 @@
 <view>
-  <view class='title'>{{item.title}}</view>
-</view>
-<view class="cu-timeline">
-  <view class="cu-time">昨天</view>
-  <view class="cu-item cur icon-noticefill" wx:for="{{item.content}}">
-    <view class="content bg-green shadow-blur">
-      <text>22:22</text> {{item.content}}
-    </view>{{item.formateData}}
+  <view class='content-title'>
+    <view class='title'>{{item.title}}</view>
+  </view>
+  <image class='image-diy' src='{{item.imgUrl}}'></image>
+  <view class="cu-timeline">
+    <view class="cu-time">昨天</view>
+    <view class="cu-item cur icon-noticefill" wx:for="{{item.content}}">
+      <view class="content bg-green shadow-blur">
+        <text>22:22</text> {{item.content}}
+      </view>{{item.formateData}}
+    </view>
   </view>
 </view>

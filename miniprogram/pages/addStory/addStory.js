@@ -1,5 +1,17 @@
 // pages/addStory/addStory.js
+// const cloud = require('wx-server-sdk')
+// const fs = require('fs')
+// const path = require('path')
+
+// exports.main = async (event, context) => {
+//   const fileStream = fs.createReadStream(path.join(__dirname, 'demo.jpg'))
+//   return await cloud.uploadFile({
+//     cloudPath: 'demo.jpg',
+//     fileContent: fileStream,
+//   })
+// }
 const db = wx.cloud.database()
+const app = getApp()
 
 Page({
 
@@ -7,7 +19,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    imgUrl: ''
   },
 
   /**
@@ -17,16 +29,96 @@ Page({
 
   },
 
+  viewImage(e) {
+    console.log(e)
+    wx.previewImage({
+      urls: [app.globalData.imagePath]
+    });
+  },
+
+  doUpload: function () {
+    let that = this
+    // 选择图片
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        console.log(res)
+        wx.showLoading({
+          title: '上传中',
+        })
+
+        const filePath = res.tempFilePaths[0]
+        let randomFileName = Math.random().toString(36).substr(2) + new Date().getTime()
+        // 上传图片
+        const cloudPath = randomFileName + filePath.match(/\.[^.]+?$/)[0]
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath,
+          success: res => {
+            app.globalData.fileID = res.fileID
+            app.globalData.cloudPath = cloudPath
+            app.globalData.imagePath = filePath
+
+            console.log(app.globalData.imagePath)
+            that.setData({
+              imgUrl: app.globalData.fileID
+            })
+          },
+          fail: e => {
+            console.error('[上传文件] 失败：', e)
+            wx.showToast({
+              icon: 'none',
+              title: '上传失败',
+            })
+          },
+          complete: () => {
+            console.log('complete')
+            wx.hideLoading()
+          }
+        })
+
+      },
+      fail: e => {
+        console.error(e)
+      }
+    })
+  },
+
+  DelImg(e) {
+    wx.showModal({
+      content: '确定要删除吗？',
+      cancelText: '取消',
+      confirmText: '是的',
+      success: res => {
+        if (res.confirm) {
+          this.setData({
+            imgUrl: ''
+          })
+        }
+      }
+    })
+  },
+
   formSubmit(e) {
     console.log(e)
     let content = {
       createAt: new Date().getTime(),
       content: e.detail.value.content
     }
+    if (e.detail.value.title === '' || e.detail.value.content === '' || this.data.imgUrl=== '') {
+      wx.showToast({
+        icon: 'none',
+        title: '请先输入完成，再点击提交',
+      })
+      return
+    }
     let params = {
       title: e.detail.value.title,
       content: [content],
-      comment: e.detail.value.comment
+      comment: e.detail.value.comment,
+      imgUrl: this.data.imgUrl
     }
     console.log(params)
     db.collection('story').add({

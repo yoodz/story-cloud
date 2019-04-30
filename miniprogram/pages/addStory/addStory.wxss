@@ -1,1 +1,8 @@
-/* pages/addStory/addStory.wxss */
+.diy-width {
+  width: 100%;
+}
+
+.cu-tag {
+  right:8rpx !important;
+  top:8rpx !important;
+}

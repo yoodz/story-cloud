@@ -1,1 +1,43 @@
 /* pages/storyList/storyList.wxss */
+.main-content {
+  width: 95%;
+  margin: 0 auto;
+}
+
+swiper-item {
+  padding:0rpx 0rpx 0rpx !important;
+}
+
+.image-style {
+  width: 33%;
+  float: left;
+}
+
+.item-style {
+  display: flex;
+  margin: 40rpx 0;
+}
+
+view {
+  width: 100%;
+}
+
+.right-content {
+  margin-left: 40%;
+  width: 55%;
+  position: relative;
+  height:100%;
+}
+
+.right-content-title {
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+}
+
+.right-content-bottom {
+  position: absolute;
+  bottom: 0;
+}

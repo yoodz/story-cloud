@@ -1,5 +1,6 @@
 // pages/storyList/storyList.js
 const db = wx.cloud.database()
+const app = getApp()
 
 Page({
 
@@ -8,7 +9,7 @@ Page({
    */
   data: {
     swiperList: [],
-    swiperList1: [{
+    swiperList: [{
       id: 0,
       type: 'image',
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
@@ -81,7 +82,7 @@ Page({
 
   toDetail: function (e) {
     let id = e.currentTarget.dataset.id
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/storyDetail/storyDetail?id=' + id,
     })
   },

@@ -2148,7 +2148,7 @@ button.icon.lg {
 
 .cu-form-group {
   background: #fff;
-  padding: 1rpx 30rpx;
+  padding: 2rpx 30rpx;
   display: flex;
   align-items: center;
   min-height: 100rpx;
