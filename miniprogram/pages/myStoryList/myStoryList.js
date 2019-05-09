@@ -1,6 +1,7 @@
 // pages/myStoryList/myStoryList.js
+const dbUtil = require('../../utils/db')
+const db = dbUtil.getDbInstance()
 const app = getApp()
-const db = wx.cloud.database()
 
 Page({
 
@@ -18,6 +19,13 @@ Page({
 
   },
 
+  toDetail: function (e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/storyDetail/storyDetail?id=' + id,
+    })
+  },
+  
   createStory: function () {
     wx.redirectTo({
       url: '/pages/addStory/addStory',

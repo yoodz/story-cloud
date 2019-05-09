@@ -1,6 +1,8 @@
-<view>
-  <view wx:for="{{storyList}}">
-    {{item.title}}
+<view class='main-content'>
+  <view class='every-item' wx:for="{{storyList}}" wx:key data-id='{{item._id}}' bindtap="toDetail">
+    <view class='item-title'>{{item.title}}</view>
+    <view>{{item.content[0].content}}</view>
+    <image class='image-style' src='{{item.imgUrl}}' mode='widthFix'></image>
   </view>
-  <button bindtap='createStory'>新增</button>
+  <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" bindtap='createStory'>新增</button>
 </view>

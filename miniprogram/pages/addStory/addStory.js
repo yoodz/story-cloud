@@ -10,7 +10,9 @@
 //     fileContent: fileStream,
 //   })
 // }
-const db = wx.cloud.database()
+// const db = wx.cloud.database()
+const dbUtil = require('../../utils/db')
+const db = dbUtil.getDbInstance()
 const app = getApp()
 
 Page({
@@ -34,6 +36,10 @@ Page({
     wx.previewImage({
       urls: [app.globalData.imagePath]
     });
+  },
+
+  onGetUserInfo (res) {
+    console.log(res)
   },
 
   doUpload: function () {
@@ -105,7 +111,8 @@ Page({
     console.log(e)
     let content = {
       createAt: new Date().getTime(),
-      content: e.detail.value.content
+      content: e.detail.value.content,
+      deleted: false
     }
     if (e.detail.value.title === '' || e.detail.value.content === '' || this.data.imgUrl=== '') {
       wx.showToast({
@@ -118,7 +125,10 @@ Page({
       title: e.detail.value.title,
       content: [content],
       comment: e.detail.value.comment,
-      imgUrl: this.data.imgUrl
+      imgUrl: this.data.imgUrl,
+      view: 0,
+      like: 0,
+      deleted: false
     }
     console.log(params)
     db.collection('story').add({

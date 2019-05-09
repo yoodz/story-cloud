@@ -1,43 +1,40 @@
 /* pages/storyList/storyList.wxss */
-.main-content {
-  width: 95%;
-  margin: 0 auto;
-}
-
 swiper-item {
   padding:0rpx 0rpx 0rpx !important;
 }
 
 .image-style {
-  width: 33%;
-  float: left;
+  width: 40%;
+  margin-right: 20rpx;
+  height: 190rpx !important;
+  overflow: hidden;
 }
 
 .item-style {
   display: flex;
-  margin: 40rpx 0;
+  margin: 20rpx 0;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 6rpx;
 }
 
-view {
+.second-content {
   width: 100%;
 }
 
 .right-content {
-  margin-left: 40%;
-  width: 55%;
-  position: relative;
-  height:100%;
+  width: 60%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:20rpx 0;
 }
 
 .right-content-title {
+  font-size:32rpx;
   overflow:hidden; 
   text-overflow:ellipsis;
   display:-webkit-box; 
   -webkit-box-orient:vertical;
   -webkit-line-clamp:2; 
-}
-
-.right-content-bottom {
-  position: absolute;
-  bottom: 0;
 }

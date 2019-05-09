@@ -1,4 +1,11 @@
 <view>
+  <view class='get-user-info'>
+    <button
+      open-type='getUserInfo'
+      bindgetuserinfo="onGetUserInfo">
+        获取用户信息
+    </button>
+  </view>
   <form bindsubmit="formSubmit">
     <view class="cu-form-group margin-top">
       <view class="title">标题</view>
@@ -6,7 +13,7 @@
     </view>
     <view class="cu-form-group top">
       <view class="title">内容</view>
-      <textarea name="content" placeholder="故事开始了..." maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" bindinput="textareaBInput"></textarea>
+      <textarea name="content" placeholder="故事开始了..." maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}"></textarea>
     </view>
     <!-- 上传图片 -->
     <view class="cu-form-group cu-bar bg-white">

@@ -1,14 +1,15 @@
-<view>
-  <view class='content-title'>
-    <view class='title'>{{item.title}}</view>
+<view class='main-content'>
+  <view class='content-title'>{{item.title}}</view>
+  <image class='image-diy' src='{{item.imgUrl}}' mode='widthFix'></image>
+  <view class="cu-item" wx:for="{{item.content}}" wx:key>
+    <view class="content bg-green shadow-blur">
+      {{item.content}}
+    </view>{{item.formateData}}
   </view>
-  <image class='image-diy' src='{{item.imgUrl}}'></image>
-  <view class="cu-timeline">
-    <view class="cu-time">昨天</view>
-    <view class="cu-item cur icon-noticefill" wx:for="{{item.content}}">
-      <view class="content bg-green shadow-blur">
-        <text>22:22</text> {{item.content}}
-      </view>{{item.formateData}}
-    </view>
+  <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
+  <!-- 新增故事内容 -->
+  <view wx:if="{{!needOauth}}" class="cu-form-group margin-top flex">
+    <textarea name="content" placeholder="点击此处输入内容" maxlength="-1" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" value='{{addContent}}' bindconfirm='formSubmit' bindblur='formSubmit'>
+    </textarea>
   </view>
 </view>

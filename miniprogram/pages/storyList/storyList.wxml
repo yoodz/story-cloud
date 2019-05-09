@@ -4,13 +4,13 @@
       <image src="{{item.imgUrl}}" mode="widthFix"></image>
     </swiper-item>
   </swiper>
-  <view wx:for="{{storyList}}" wx:key class='item-style' wx:if="{{index > 1}}">
-    <view data-id='{{item._id}}' bindtap="toDetail">
-      <image class='image-style' src='{{item.imgUrl}}' mode="widthFix"></image>
-      <view class='right-content'>
-        <view class='right-content-title'>{{item.title}}</view>
-        <view class='right-content-bottom'>233</view>
-      </view>
+  <view wx:for="{{storyList}}" wx:key class='item-style' wx:if="{{index > 1}}"  bindtap="toDetail" data-id='{{item._id}}'>
+    <!-- <view class='second-content' data-id='{{item._id}}' bindtap="toDetail"> -->
+    <image class='image-style' src='{{item.imgUrl}}' mode="aspectFill"></image>
+    <view class='right-content'>
+      <view class='right-content-title'>{{item.title}}</view>
+      <view class='right-content-bottom'>233</view>
     </view>
+    <!-- </view> -->
   </view>
 </view>

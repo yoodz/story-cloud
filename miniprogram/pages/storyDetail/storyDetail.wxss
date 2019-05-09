@@ -1,10 +1,11 @@
 /* pages/storyDetail/storyDetail.wxss */
 .image-diy {
   width: 100%;
+  border-radius:10rpx 10rpx 0 0;
 }
 
 .content-title {
-  text-align: center;
-  font-size: 40rpx;
-  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 20rpx 0;
 }

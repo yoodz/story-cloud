@@ -3,10 +3,11 @@
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
 		"urlCheck": true,
-		"es6": true,
+		"es6": false,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"appid": "wx0824cd9111deab65",
 	"projectname": "story-cloud",
@@ -40,7 +41,7 @@
 					"id": 1,
 					"name": "故事详情",
 					"pathName": "pages/storyDetail/storyDetail",
-					"query": "id=9c4488c75cc81b470965d7621a83051f",
+					"query": "id=ee3099285cc8389c09774e3b35e21815",
 					"scene": null
 				}
 			]
