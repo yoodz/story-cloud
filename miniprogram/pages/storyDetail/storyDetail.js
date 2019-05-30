@@ -5,6 +5,7 @@ const regeneratorRuntime = require("../../utils/runtime")
 const db = dbUtil.getDbInstance()
 const app = getApp()
 let articalId = ''
+let doing = false
 
 Page({
 
@@ -64,6 +65,13 @@ Page({
 
   formSubmit: async function(e) {
     let that = this
+    console.log(1)
+    if (doing || e.detail.value === '') {return}
+    wx.showLoading({
+      title: '加载中',
+    })
+    doing = true
+    console.log(2)
     console.log(e.detail.value)
     console.log(articalId)
 
@@ -76,16 +84,19 @@ Page({
       avatarUrl: userInfoStory.avatarUrl,
       nickName: userInfoStory.nickName
     }
-    const _ = db.command
-    db.collection('story').doc(articalId).update({
-      // data 传入需要局部更新的数据
+  
+    wx.cloud.callFunction({
+      name: 'story',
       data: {
-        // 表示将 done 字段置为 true
-        content: _.push(content)
+        articalId: articalId,
+        content: content
       },
-      success(res) {
+      complete: res => {
         console.log(res)
-        if (res.stats.updated === 1) {
+        wx.hideLoading()
+        doing = false
+        if (res.result.stats.updated === 1) {
+          console.log(3)
           that.setData({
             addContent: ''
           })
@@ -96,15 +107,20 @@ Page({
           })
           that._getData(articalId)
         }
+      },
+      fail: err => {
+        console.error('[云函数] [story] 调用失败', err)
       }
     })
   },
 
   onGetUserInfo: function(e) {
-    common.saveUserInfo(e)
-    this.setData({
-      needOauth: false
-    })
+    if (e.detail.errMsg === 'getUserInfo:ok') {
+      common.saveUserInfo(e)
+      this.setData({
+        needOauth: false
+      })
+    }
   },
 
   onReady: function() {

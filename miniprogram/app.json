@@ -2,8 +2,8 @@
   "pages": [
     "pages/storyList/storyList",
     "pages/myStoryList/myStoryList",
-    "pages/index/index",
     "pages/addStory/addStory",
+    "pages/index/index",
     "pages/storyDetail/storyDetail",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -28,12 +28,13 @@
       },
       {
         "text": " 添加故事",
-        "pagePath": "pages/myStoryList/myStoryList"
+        "pagePath": "pages/addStory/addStory"
       },
       {
         "text": " 我的",
         "pagePath": "pages/mine/mine"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

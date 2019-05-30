@@ -4,5 +4,7 @@
     <view>{{item.content[0].content}}</view>
     <image class='image-style' src='{{item.imgUrl}}' mode='widthFix'></image>
   </view>
-  <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" bindtap='createStory'>新增</button>
+  <form>
+    <button class='btn-add-story' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" bindtap='createStory'>新增</button>
+  </form>
 </view>

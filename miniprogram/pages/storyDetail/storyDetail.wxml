@@ -1,10 +1,14 @@
 <view class='main-content'>
   <view class='content-title'>{{item.title}}</view>
   <image class='image-diy' src='{{item.imgUrl}}' mode='widthFix'></image>
-  <view class="cu-item" wx:for="{{item.content}}" wx:key>
-    <view class="content bg-green shadow-blur">
+  <view class="cu-item every-item" wx:for="{{item.content}}" wx:key>
+
+    <image class='cu-avatar round margin-left' src='{{item.avatarUrl}}'></image>
+    {{item.nickName}} | {{item.formateData}}
+    
+    <view class="content">
       {{item.content}}
-    </view>{{item.formateData}}
+    </view>
   </view>
   <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
   <!-- 新增故事内容 -->

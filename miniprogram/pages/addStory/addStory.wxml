@@ -1,11 +1,14 @@
 <view>
-  <view class='get-user-info'>
+  <scroll-view class='get-user-info'>
     <button
+      wx:if='{{needOauth}}'
+      class='button-style'
+      style='height: {{ windowHeight }}px; width: {{ windowWidth }}px'
       open-type='getUserInfo'
       bindgetuserinfo="onGetUserInfo">
         获取用户信息
     </button>
-  </view>
+  </scroll-view>
   <form bindsubmit="formSubmit">
     <view class="cu-form-group margin-top">
       <view class="title">标题</view>

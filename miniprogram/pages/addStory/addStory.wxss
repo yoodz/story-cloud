@@ -6,3 +6,9 @@
   right:8rpx !important;
   top:8rpx !important;
 }
+
+.button-style {
+  position: fixed;
+  z-index:999;
+  opacity: 0;
+}

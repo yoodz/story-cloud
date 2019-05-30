@@ -24,6 +24,13 @@ App({
     this.globalData = {
     }
 
+    wx.getSystemInfo({
+      success: res => {
+        this.globalData.windowWidth = res.windowWidth
+        this.globalData.windowHeight = res.windowHeight
+      }
+    })
+
     // wx.login({
     //   success(res) {
     //     console.log(res.code)

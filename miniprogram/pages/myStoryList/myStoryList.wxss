@@ -14,3 +14,10 @@
   margin-top: 20rpx;
   border-radius:10rpx;
 }
+
+.btn-add-story {
+  position:fixed;
+  right:40rpx;
+  bottom:40rpx;
+  opacity: 0.7;
+}

@@ -2,7 +2,7 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": true,
 		"minified": true,
@@ -11,7 +11,9 @@
 	},
 	"appid": "wx0824cd9111deab65",
 	"projectname": "story-cloud",
-	"libVersion": "2.2.5",
+	"libVersion": "2.6.6",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -41,7 +43,7 @@
 					"id": 1,
 					"name": "故事详情",
 					"pathName": "pages/storyDetail/storyDetail",
-					"query": "id=ee3099285cc8389c09774e3b35e21815",
+					"query": "id=9c4488c75cd50c590f32ff0d3d94fcb3",
 					"scene": null
 				}
 			]

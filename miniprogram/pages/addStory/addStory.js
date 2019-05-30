@@ -1,17 +1,6 @@
-// pages/addStory/addStory.js
-// const cloud = require('wx-server-sdk')
-// const fs = require('fs')
-// const path = require('path')
-
-// exports.main = async (event, context) => {
-//   const fileStream = fs.createReadStream(path.join(__dirname, 'demo.jpg'))
-//   return await cloud.uploadFile({
-//     cloudPath: 'demo.jpg',
-//     fileContent: fileStream,
-//   })
-// }
-// const db = wx.cloud.database()
+const common = require('../../utils/common')
 const dbUtil = require('../../utils/db')
+const regeneratorRuntime = require("../../utils/runtime")
 const db = dbUtil.getDbInstance()
 const app = getApp()
 
@@ -21,7 +10,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrl: ''
+    imgUrl: '',
+    windowHeight: app.globalData.windowHeight,
+    windowWidth: app.globalData.windowWidth,
+    needOauth: false
   },
 
   /**
@@ -38,8 +30,13 @@ Page({
     });
   },
 
-  onGetUserInfo (res) {
-    console.log(res)
+  onGetUserInfo(e) {
+    if (e.detail.errMsg === 'getUserInfo:ok') {
+      common.saveUserInfo(e)
+      this.setData({
+        needOauth: false
+      })
+    }
   },
 
   doUpload: function () {
@@ -107,12 +104,15 @@ Page({
     })
   },
 
-  formSubmit(e) {
-    console.log(e)
+  async formSubmit(e) {
+    let userInfoStory = await common.getUserInfo()
     let content = {
       createAt: new Date().getTime(),
       content: e.detail.value.content,
-      deleted: false
+      deleted: false,
+      openId: app.globalData.openId,
+      avatarUrl: userInfoStory.avatarUrl,
+      nickName: userInfoStory.nickName
     }
     if (e.detail.value.title === '' || e.detail.value.content === '' || this.data.imgUrl=== '') {
       wx.showToast({
@@ -156,8 +156,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: async function () {
+    let needOauth = await common.checkIsOauth()
+    this.setData({
+      needOauth
+    })
   },
 
   /**
