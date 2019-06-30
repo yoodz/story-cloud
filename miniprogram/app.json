@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/storyList/storyList",
+    "pages/testFunction/testFunction",
+    "pages/index/index",
     "pages/myStoryList/myStoryList",
     "pages/addStory/addStory",
-    "pages/index/index",
     "pages/storyDetail/storyDetail",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

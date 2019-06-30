@@ -9,4 +9,4 @@ function getDbInstance () {
 
 module.exports = {
   getDbInstance
-}
+};

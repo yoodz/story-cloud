@@ -3,6 +3,12 @@ swiper-item {
   padding:0rpx 0rpx 0rpx !important;
 }
 
+.no-message {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
 .image-style {
   width: 40%;
   margin-right: 20rpx;

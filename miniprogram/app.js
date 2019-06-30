@@ -14,6 +14,7 @@ App({
       name: 'login',
       data: {},
       success: res => {
+        console.log(res)
         this.globalData.openId = res.result.openid
       },
       fail: err => {
@@ -31,6 +32,12 @@ App({
       }
     })
 
+    wx.getUserInfo({
+      success: res => {
+        this.globalData.avatarUrl = res.userInfo.avatarUrl
+        this.globalData.nickName = res.userInfo.nickName
+      }
+    })
     // wx.login({
     //   success(res) {
     //     console.log(res.code)

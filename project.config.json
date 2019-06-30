@@ -5,13 +5,14 @@
 		"urlCheck": false,
 		"es6": false,
 		"postcss": true,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"appid": "wx0824cd9111deab65",
 	"projectname": "story-cloud",
-	"libVersion": "2.6.6",
+	"libVersion": "2.6.5",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

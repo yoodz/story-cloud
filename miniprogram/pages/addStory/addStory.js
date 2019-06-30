@@ -3,6 +3,7 @@ const dbUtil = require('../../utils/db')
 const regeneratorRuntime = require("../../utils/runtime")
 const db = dbUtil.getDbInstance()
 const app = getApp()
+let doning = false
 
 Page({
 
@@ -105,14 +106,17 @@ Page({
   },
 
   async formSubmit(e) {
-    let userInfoStory = await common.getUserInfo()
+    if (doning) {
+      return
+    }
+    doning = true
     let content = {
       createAt: new Date().getTime(),
       content: e.detail.value.content,
       deleted: false,
       openId: app.globalData.openId,
-      avatarUrl: userInfoStory.avatarUrl,
-      nickName: userInfoStory.nickName
+      avatarUrl: app.globalData.avatarUrl,
+      nickName: app.globalData.nickName
     }
     if (e.detail.value.title === '' || e.detail.value.content === '' || this.data.imgUrl=== '') {
       wx.showToast({
@@ -135,8 +139,8 @@ Page({
       // data 字段表示需新增的 JSON 数据
       data: params,
       success(res) {
+        doning = false
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-        console.log(res)
         let id = res._id
         wx.redirectTo({
           url: '/pages/storyDetail/storyDetail?id=' + id,

@@ -21,7 +21,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.showLoading({
       title: '加载中',
     })
@@ -29,8 +29,9 @@ Page({
     this._getData(articalId)
   },
 
-  _getData: function(id) {
+  _getData: function (id) {
     let that = this
+    const db = wx.cloud.database()
     db.collection('story').doc(id).get({
       success(res) {
         // res.data 包含该记录的数据
@@ -43,7 +44,7 @@ Page({
     })
   },
 
-  formateData: function(data) {
+  formateData: function (data) {
     let content = data.content
     for (let i in content) {
       content[i].formateData = this.formateTime(content[i].createAt)
@@ -51,7 +52,7 @@ Page({
     return data
   },
 
-  formateTime: function(timestamp) {
+  formateTime: function (timestamp) {
     let Y, M, D, h, m, s
     let createTime = new Date(timestamp)
     Y = createTime.getFullYear() + '-';
@@ -63,39 +64,33 @@ Page({
     return Y + M + D + h + m + s;
   },
 
-  formSubmit: async function(e) {
+  formSubmit: async function (e) {
     let that = this
-    console.log(1)
-    if (doing || e.detail.value === '') {return}
+    if (doing || e.detail.value === '') { return }
     wx.showLoading({
       title: '加载中',
     })
     doing = true
-    console.log(2)
-    console.log(e.detail.value)
-    console.log(articalId)
 
-    let userInfoStory = await common.getUserInfo()
     let content = {
       createAt: new Date().getTime(),
       content: e.detail.value,
       deleted: false,
       openId: app.globalData.openId,
-      avatarUrl: userInfoStory.avatarUrl,
-      nickName: userInfoStory.nickName
+      avatarUrl: app.globalData.avatarUrl,
+      nickName: app.globalData.nickName
     }
-  
-    wx.cloud.callFunction({
-      name: 'story',
+
+    const _ = db.command
+    db.collection('story').doc(articalId).update({
       data: {
-        articalId: articalId,
-        content: content
+        content: _.push(content)
       },
-      complete: res => {
+      success: res => {
         console.log(res)
         wx.hideLoading()
         doing = false
-        if (res.result.stats.updated === 1) {
+        if (res.stats.updated===1) {
           console.log(3)
           that.setData({
             addContent: ''
@@ -107,14 +102,11 @@ Page({
           })
           that._getData(articalId)
         }
-      },
-      fail: err => {
-        console.error('[云函数] [story] 调用失败', err)
       }
     })
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function (e) {
     if (e.detail.errMsg === 'getUserInfo:ok') {
       common.saveUserInfo(e)
       this.setData({
@@ -123,14 +115,14 @@ Page({
     }
   },
 
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: async function() {
+  onShow: async function () {
     let needOauth = await common.checkIsOauth()
     this.setData({
       needOauth
@@ -140,35 +132,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

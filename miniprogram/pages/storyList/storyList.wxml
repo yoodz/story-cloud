@@ -1,4 +1,5 @@
 <view class='main-content'>
+  <view class="no-message" wx:if="{{storyList.length < 1}}">还没有消息(⊙﹏⊙)</view>
   <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
     <swiper-item wx:for="{{storyList}}" wx:key wx:if="{{index < 3}}" data-id='{{item._id}}' bindtap="toDetail">
       <image src="{{item.imgUrl}}" mode="widthFix"></image>

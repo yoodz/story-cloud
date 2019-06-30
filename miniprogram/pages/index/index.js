@@ -93,6 +93,34 @@ Page({
   },
 
   onGetOpenid: function() {
+    wx.cloud.callFunction({
+      name: 'story',
+      data: {
+        articalId: articalId,
+        content: content
+      },
+      success: res => {
+        console.log(res)
+        wx.hideLoading()
+        doing = false
+        if (res.result.stats.updated === 1) {
+          console.log(3)
+          that.setData({
+            addContent: ''
+          })
+          wx.showToast({
+            title: '留言成功',
+            duration: 2000,
+            mask: true
+          })
+          that._getData(articalId)
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [story] 调用失败', err)
+      }
+    })
+    return
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
