@@ -123,6 +123,7 @@ Page({
         icon: 'none',
         title: '请先输入完成，再点击提交',
       })
+      doning = false
       return
     }
     let params = {

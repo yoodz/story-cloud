@@ -1,20 +1,18 @@
-// pages/mine/mine.js
-const app = getApp()
-
+// pages/admin/admin.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatarUrl: '',
-    nickName: ''
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   /**
@@ -28,10 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      avatarUrl: app.globalData.avatarUrl,
-      nickName: app.globalData.nickName
-    })
+
   },
 
   /**
@@ -67,23 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  touchStart: function (e) {
-    this.setData({
-      touchStart: e.timeStamp
-    })
-  },
-  touchEnd: function (e) {
-    this.setData({
-      touchEnd: e.timeStamp
-    })
-  },
-  pressTap: function () {
-    var touchTime = this.data.touchEnd - this.data.touchStart;
-    if (touchTime > 5000) { //自定义长按时长，单位为ms
-      wx.navigateTo({
-        url: '/pages/admin/admin',
-      })
-     }
   }
 })

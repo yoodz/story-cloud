@@ -81,16 +81,17 @@ Page({
       nickName: app.globalData.nickName
     }
 
-    const _ = db.command
-    db.collection('story').doc(articalId).update({
+    wx.cloud.callFunction({
+      name: 'addComment',
       data: {
-        content: _.push(content)
+        articalId,
+        content
       },
       success: res => {
         console.log(res)
         wx.hideLoading()
         doing = false
-        if (res.stats.updated===1) {
+        if (res.result.stats.updated === 1) {
           console.log(3)
           that.setData({
             addContent: ''
@@ -102,6 +103,18 @@ Page({
           })
           that._getData(articalId)
         }
+      },
+      fail: err => {
+        // handle error
+        doing = false
+        wx.showToast({
+          title: '留言失败',
+          duration: 2000,
+          mask: true
+        })
+      },
+      complete: () => {
+        // ...
       }
     })
   },
@@ -126,6 +139,13 @@ Page({
     let needOauth = await common.checkIsOauth()
     this.setData({
       needOauth
+    })
+
+    wx.cloud.callFunction({
+      name: 'updatePv',
+      data: {
+        articalId
+      }
     })
   },
 

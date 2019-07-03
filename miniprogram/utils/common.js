@@ -13,7 +13,6 @@ function checkIsOauth () {
       }
     })
   })
- 
 }
 
 function getUserInfo() {

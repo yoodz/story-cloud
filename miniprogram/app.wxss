@@ -1,12 +1,5 @@
-@import "icon.wxss";
-@import "colorui.wxss";
-
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-}  */
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
 
 .nav-list {
   display: flex;

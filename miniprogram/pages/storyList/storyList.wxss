@@ -1,46 +1,87 @@
-/* pages/storyList/storyList.wxss */
-swiper-item {
-  padding:0rpx 0rpx 0rpx !important;
+page {
+  background-color: #fff;
 }
 
 .no-message {
-  display: flex;
-  justify-content: center;
-  margin-top: 20rpx;
-}
-
-.image-style {
-  width: 40%;
-  margin-right: 20rpx;
-  height: 190rpx !important;
-  overflow: hidden;
-}
-
-.item-style {
-  display: flex;
-  margin: 20rpx 0;
-  width: 100%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 6rpx;
-}
-
-.second-content {
+  text-align: center;
   width: 100%;
 }
 
-.right-content {
-  width: 60%;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:20rpx 0;
+.free-WaterfallFlow {
+  width: 93%;
+  column-count: 2; /*column-count 属性规定元素应该被分隔的列数：*/
+  margin: 0 auto;
+  background-color: #fff;
+  padding-top: 124rpx;
 }
 
-.right-content-title {
-  font-size:32rpx;
-  overflow:hidden; 
-  text-overflow:ellipsis;
-  display:-webkit-box; 
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:2; 
+.free-WaterfallFlow .flex-wrap {
+  background: #fff;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 6%;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 10px 0px rgba(170,170,170, .7);
 }
+
+.flex-wrap image {
+  border-radius: 10rpx 10rpx 0 0;
+  width: 100%;
+}
+
+.second-view {
+  margin-left: 10rpx;
+}
+
+.flex-wrap view:nth-child(2) {
+  font-size: 15px;
+  padding: 5%;
+  color: #000;
+}
+
+.flex-wrap view:nth-child(3) {
+  font-size: 10px;
+  color: #aaa;
+  padding: 0 0 20rpx 15rpx;
+}
+
+.swiper-tab {
+  width: 100%;
+  margin-bottom: 10rpx;
+  padding: 40rpx 15rpx 20rpx;
+  font-family: "cuIcon";
+  position: fixed;
+  z-index: 3;
+  background: rgba(247, 247, 245, 1);
+
+}
+page{ 
+  font-family: "cuIcon";
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 17%;
+  color: #979797;
+  text-align: center;
+}
+
+.on {
+  font-size: 43rpx;
+  position: relative;
+  color: var(--mygreen);
+  font-weight: 500;
+}
+
+/* .on::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -10rpx;
+  left: 10rpx;
+  width: 80%;
+  height: 4rpx;
+  background: var(--mygreen);
+  transition:width .4s ease-in-out;
+} */

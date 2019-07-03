@@ -1,3 +1,4 @@
+<cu-custom bgColor="bg-gradual-other-green" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">广场</view></cu-custom>
 <view class='main-content'>
   <view class='content-title'>{{item.title}}</view>
   <image class='image-diy' src='{{item.imgUrl}}' mode='widthFix'></image>

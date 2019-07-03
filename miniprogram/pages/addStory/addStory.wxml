@@ -1,3 +1,4 @@
+<cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}"><view slot="content">添加故事</view></cu-custom>
 <view>
   <scroll-view class='get-user-info'>
     <button
@@ -39,7 +40,7 @@
       </view>
     </view>
     <view class="cu-form-group margin-top">
-      <view class="title">允许评论</view>
+      <view class="title">只允许通过分享评论</view>
       <switch name="comment"></switch>
     </view>
     <view class="padding flex flex-direction">

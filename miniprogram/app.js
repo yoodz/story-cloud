@@ -29,6 +29,10 @@ App({
       success: res => {
         this.globalData.windowWidth = res.windowWidth
         this.globalData.windowHeight = res.windowHeight
+        this.globalData.StatusBar = res.statusBarHeight;
+        let custom = wx.getMenuButtonBoundingClientRect();
+        this.globalData.Custom = custom;
+        this.globalData.CustomBar = custom.bottom + custom.top - res.statusBarHeight;
       }
     })
 

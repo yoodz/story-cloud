@@ -1,1 +1,10 @@
 /* pages/mine/mine.wxss */
+.top {
+  text-align: center;
+  padding: 150rpx 50rpx 100rpx;
+  background: #fff;
+}
+
+.top> view:first-child {
+  margin-bottom: 30rpx;
+}
