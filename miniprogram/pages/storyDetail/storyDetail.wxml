@@ -1,14 +1,22 @@
-<cu-custom bgColor="bg-gradual-other-green" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">广场</view></cu-custom>
+<cu-custom bgColor="bg-gradual-other-green" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">广场</view>
+</cu-custom>
+<image class='image-diy' src='{{item.imgUrl}}' mode='widthFix'></image>
 <view class='main-content'>
   <view class='content-title'>{{item.title}}</view>
-  <image class='image-diy' src='{{item.imgUrl}}' mode='widthFix'></image>
+  <view class=''>
+    <text class="icon-time"></text> {{item.createTime}}
+    <text class="icon-attention margin-left-10"></text> {{item.view}}</view>
   <view class="cu-item every-item" wx:for="{{item.content}}" wx:key>
-
-    <image class='cu-avatar round margin-left' src='{{item.avatarUrl}}'></image>
-    {{item.nickName}} | {{item.formateData}}
-    
-    <view class="content">
-      {{item.content}}
+    <image class='cu-avatar lg round' src='{{item.avatarUrl}}'></image>
+    <view class="every-item-right">
+      <view>{{item.nickName}}</view>
+      <view class="content">
+        {{item.content}}
+      </view>
+      <!-- <view>{{item.formateData}}</view> -->
+      <view>一天前</view>
     </view>
   </view>
   <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>

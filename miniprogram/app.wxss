@@ -9,7 +9,7 @@
 }
 
 .main-content {
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   padding-bottom: 20rpx;
 }

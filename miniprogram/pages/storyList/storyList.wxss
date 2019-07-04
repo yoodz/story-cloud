@@ -3,8 +3,9 @@ page {
 }
 
 .no-message {
-  text-align: center;
+ text-align: center;
   width: 100%;
+  position: absolute;
 }
 
 .free-WaterfallFlow {

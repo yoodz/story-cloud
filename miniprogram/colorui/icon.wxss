@@ -76,7 +76,7 @@ button[class*="icon-"] {
 
 .icon-taxi:before { content: "\e65d"; }
 
-.icon-timefill:before { content: "\e65e"; }
+.icon-timetimefill:before { content: "\e65e"; }
 
 .icon-time:before { content: "\e65f"; }
 

@@ -26,6 +26,7 @@ Page({
       title: '加载中',
     })
     articalId = options.id
+    console.log(articalId)
     this._getData(articalId)
   },
 
@@ -36,6 +37,7 @@ Page({
       success(res) {
         // res.data 包含该记录的数据
         let formatData = that.formateData(res.data)
+        formatData.createTime = formatData.content[0].formateData.split(' ')[0]
         wx.hideLoading()
         that.setData({
           'item': formatData

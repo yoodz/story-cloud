@@ -17,14 +17,14 @@
       <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" wx:if="{{index%2==0}}" data-id='{{item._id}}' bindtap="toDetail">
         <image mode="widthFix" src="{{item.imgUrl}}"></image>
         <view>{{item.title}}</view>
-        <view><text class="icon-attentionfill"></text> {{item.view}} <text class="icon-likefill second-view"></text> {{item.like}}</view>
+        <view><text class="icon-attention"></text> {{item.view}} <text class="icon-like second-view"></text> {{item.like}}</view>
       </view>
     </block>
     <block>
       <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" wx:if="{{index%2!=0}}" data-id='{{item._id}}' bindtap="toDetail">
         <image mode="widthFix" src="{{item.imgUrl}}"></image>
         <view>{{item.title}}</view>
-        <view><text class="icon-attentionfill"></text> {{item.view}} <text class="icon-likefill second-view"></text> {{item.like}}</view>
+        <view><text class="icon-attention"></text> {{item.view}} <text class="icon-like second-view"></text> {{item.like}}</view>
       </view>
     </block>
   </view>
