@@ -16,12 +16,16 @@
 
 .every-item-right {
   margin-left: 20rpx;
+  width: 80%;
 }
+
 .every-item-right view:first-child {
   color: #666;
 }
+
 .every-item-right view:nth-child(3) {
   font-size: 24rpx;
+  margin-top: 20rpx;
 }
 
 .every-item {
@@ -33,9 +37,11 @@
   display: flex;
 }
 
-.content {
+.main-content .content {
   margin-top: 20rpx;
   color: #999;
   font-size: 30rpx;
   margin-bottom: 20rpx;
+  word-break: break-all;
+  width: 90%;
 }

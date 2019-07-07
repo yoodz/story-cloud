@@ -50,8 +50,18 @@ Page({
     let content = data.content
     for (let i in content) {
       content[i].formateData = this.formateTime(content[i].createAt)
+      content[i].formateDay = this.formateTimeByDay(content[i].createAt)
     }
     return data
+  },
+
+  formateTimeByDay: function (timestamp) {
+    let days = ["今天", "一天前", "两天前", "三天前", "四天前", "五天前", "六天前", "一周前"]
+    let tmpeTime = new Date().getTime() - timestamp
+    let index = Math.floor(tmpeTime / 1000 / 60 / 60 / 24)
+    console.log(index)
+    index = index > 7 ? 7 : index
+    return days[index]
   },
 
   formateTime: function (timestamp) {
@@ -59,7 +69,7 @@ Page({
     let createTime = new Date(timestamp)
     Y = createTime.getFullYear() + '-';
     M = (createTime.getMonth() + 1 < 10 ? '0' + (createTime.getMonth() + 1) : createTime.getMonth() + 1) + '-';
-    D = createTime.getDate() + ' ';
+    D = createTime.getDate() < 10 ? '0' + createTime.getDate() + ' ' : createTime.getDate() + ' ';
     h = createTime.getHours() + ':';
     m = createTime.getMinutes() + ':';
     s = createTime.getSeconds();

@@ -1,6 +1,6 @@
 <cu-custom bgColor="bg-gradual-other-green" isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content">广场</view>
+  <view slot="content">故事接龙Plus</view>
 </cu-custom>
 <image class='image-diy' src='{{item.imgUrl}}' mode='widthFix'></image>
 <view class='main-content'>
@@ -12,17 +12,17 @@
     <image class='cu-avatar lg round' src='{{item.avatarUrl}}'></image>
     <view class="every-item-right">
       <view>{{item.nickName}}</view>
-      <view class="content">
+      <text class="content">
         {{item.content}}
-      </view>
+      </text> 
       <!-- <view>{{item.formateData}}</view> -->
-      <view>一天前</view>
+      <view>{{item.formateDay}}</view>
     </view>
   </view>
   <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
   <!-- 新增故事内容 -->
   <view wx:if="{{!needOauth}}" class="cu-form-group margin-top flex">
-    <textarea name="content" placeholder="点击此处输入内容" maxlength="-1" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" value='{{addContent}}' bindconfirm='formSubmit' bindblur='formSubmit'>
+    <textarea name="content" placeholder="点击此处输入内容" class="{{textareaBValue?'value':''}}" value='{{addContent}}' bindconfirm='formSubmit' bindblur='formSubmit'>
     </textarea>
   </view>
 </view>
