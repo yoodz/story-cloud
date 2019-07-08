@@ -51,6 +51,9 @@ async function saveUserInfo (e) {
     data: userData
   })
 
+  app.globalData.avatarUrl = userData.avatarUrl
+  app.globalData.nickName = userData.nickName
+
   if (e.detail.userInfo) {
     let userFromDb = await db.collection('user').where({}).get()
     console.log(userFromDb.data.length)

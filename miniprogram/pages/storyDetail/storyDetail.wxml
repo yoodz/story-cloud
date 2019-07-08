@@ -5,7 +5,7 @@
 <image class='image-diy' src='{{item.imgUrl}}' mode='widthFix'></image>
 <view class='main-content'>
   <view class='content-title'>{{item.title}}</view>
-  <view class=''>
+  <view>
     <text class="icon-time"></text> {{item.createTime}}
     <text class="icon-attention margin-left-10"></text> {{item.view}}</view>
   <view class="cu-item every-item" wx:for="{{item.content}}" wx:key>
@@ -19,9 +19,10 @@
       <view>{{item.formateDay}}</view>
     </view>
   </view>
-  <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
+  <!-- <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button> -->
   <!-- 新增故事内容 -->
-  <view wx:if="{{!needOauth}}" class="cu-form-group margin-top flex">
+  <view  class="cu-form-group margin-top userinfo-warap">
+    <button wx:if="{{needOauth}}" class="userinfo-button" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
     <textarea name="content" placeholder="点击此处输入内容" class="{{textareaBValue?'value':''}}" value='{{addContent}}' bindconfirm='formSubmit' bindblur='formSubmit'>
     </textarea>
   </view>
