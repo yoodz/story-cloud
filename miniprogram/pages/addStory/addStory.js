@@ -133,7 +133,8 @@ Page({
       imgUrl: this.data.imgUrl,
       view: 0,
       like: 0,
-      deleted: false
+      deleted: false,
+      createAt: new Date().getTime()
     }
     console.log(params)
     db.collection('story').add({

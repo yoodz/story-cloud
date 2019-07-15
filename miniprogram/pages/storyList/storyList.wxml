@@ -1,34 +1,51 @@
-<cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}"><view slot="content">广场</view></cu-custom>
+<cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}">
+  <view slot="content">广场</view>
+</cu-custom>
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">最热</view>
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">最新</view>
 </view>
-<!-- <scroll-view scroll-x="true" class="nav" scroll-left="{{navScrollLeft}}" scroll-with-animation="{{true}}">
-  <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
-    <view class="nav-item {{currentTab == idx ?'active':''}}" data-current="{{idx}}" bindtap="switchNav">{{navItem.text}}</view>
-  </block>
-</scroll-view> -->
 
 <view class="free-WaterfallFlow">
-  <view class="no-message" wx:if="{{storyList.length < 1}}">还没有消息(⊙﹏⊙)</view>
-
+  <view class="no-message" wx:if="{{storyList.length < 1 && !loading}}">还没有消息(⊙﹏⊙)</view>
   <view wx:if="{{currentTab==0}}">
     <block>
       <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" wx:if="{{index%2==0}}" data-id='{{item._id}}' bindtap="toDetail">
         <image mode="widthFix" src="{{item.imgUrl}}"></image>
         <view>{{item.title}}</view>
-        <view><text class="icon-attention"></text> {{item.view}} <text class="icon-like second-view"></text> {{item.like}}</view>
+        <view>
+          <text class="icon-attention"></text> {{item.view}}
+          <text class="icon-like second-view"></text> {{item.like}}</view>
       </view>
     </block>
     <block>
       <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" wx:if="{{index%2!=0}}" data-id='{{item._id}}' bindtap="toDetail">
         <image mode="widthFix" src="{{item.imgUrl}}"></image>
         <view>{{item.title}}</view>
-        <view><text class="icon-attention"></text> {{item.view}} <text class="icon-like second-view"></text> {{item.like}}</view>
+        <view>
+          <text class="icon-attention"></text> {{item.view}}
+          <text class="icon-like second-view"></text> {{item.like}}</view>
       </view>
     </block>
   </view>
   <view wx:elif="{{currentTab==1}}">
-    123
+    <block>
+      <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" wx:if="{{index%2==0}}" data-id='{{item._id}}' bindtap="toDetail">
+        <image mode="widthFix" src="{{item.imgUrl}}"></image>
+        <view>{{item.title}}</view>
+        <view>
+          <text class="icon-attention"></text> {{item.view}}
+          <text class="icon-like second-view"></text> {{item.like}}</view>
+      </view>
+    </block>
+    <block>
+      <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" wx:if="{{index%2!=0}}" data-id='{{item._id}}' bindtap="toDetail">
+        <image mode="widthFix" src="{{item.imgUrl}}"></image>
+        <view>{{item.title}}</view>
+        <view>
+          <text class="icon-attention"></text> {{item.view}}
+          <text class="icon-like second-view"></text> {{item.like}}</view>
+      </view>
+    </block>
   </view>
 </view>
