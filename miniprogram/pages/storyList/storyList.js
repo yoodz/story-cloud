@@ -32,7 +32,7 @@ Page({
       wx.showLoading({
         title: '加载中',
       })
-      console.log(e.target.dataset.current)
+      currentPage = 1
       if (e.target.dataset.current === "1") {
         sortBy = 'createAt'
       } else {

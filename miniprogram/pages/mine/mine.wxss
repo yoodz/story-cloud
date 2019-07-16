@@ -1,8 +1,10 @@
 /* pages/mine/mine.wxss */
 .top {
   text-align: center;
-  padding: 150rpx 50rpx 100rpx;
-  background: #fff;
+  padding: 270rpx 50rpx 100rpx;
+  /* background: linear-gradient(-45deg, #336799 0%, #66cdcc 100%); */
+  background-size: contain;
+  color: #fff;
 }
 
 .top> view:first-child {

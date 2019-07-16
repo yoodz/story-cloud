@@ -1,9 +1,9 @@
-<cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}">
+<!-- <cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}">
   <view slot="backText">返回</view>
   <view slot="content">我的</view>
-</cu-custom>
+</cu-custom> -->
 
-<view class="top" bindtouchstart='touchStart' bindtouchend='touchEnd' bindtap='pressTap'>
+<view class="top" style="background-image: url('../../images/bk-freeze.jpg')" bindtouchstart='touchStart' bindtouchend='touchEnd' bindtap='pressTap'>
   <view class="cu-avatar xl round margin-left" style="background-image:url({{avatarUrl}});"></view>
   <view>{{nickName}}</view>
 </view>

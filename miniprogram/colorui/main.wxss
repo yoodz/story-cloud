@@ -22,6 +22,7 @@ page {
   --yellow: #fbbd08;
   --olive: #8dc63f;
   --green: #39b54a;
+  --diyGreen: #66cdcc;
   --cyan: #1cbbb4;
   --blue: #0081ff;
   --purple: #6739b6;
@@ -39,7 +40,7 @@ page {
   --gradualPurple: linear-gradient(45deg, #9000ff, #5e00ff);
   --gradualPink: linear-gradient(45deg, #ec008c, #6739b6);
   --gradualBlue: linear-gradient(45deg, #0081ff, #1cbbb4);
-  --gradualOtherGreen: linear-gradient(45deg, #fbe783, #02a585);
+  --gradualOtherGreen: linear-gradient(-45deg, #336799 0%, #66cdcc 100%);
 }
 
 view, scroll-view, swiper, button, input, textarea, label, navigator, image {
@@ -3328,7 +3329,7 @@ scroll-view.cu-steps .cu-item {
 }
 
 .bg-green {
-  background-color: var(--green);
+  background-color: var(--diyGreen);
   color: #fff;
 }
 
