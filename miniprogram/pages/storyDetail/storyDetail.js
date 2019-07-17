@@ -104,7 +104,6 @@ Page({
         wx.hideLoading()
         doing = false
         if (res.result.stats.updated === 1) {
-          console.log(3)
           that.setData({
             addContent: ''
           })
@@ -114,6 +113,14 @@ Page({
             mask: true
           })
           that._getData(articalId)
+          //send templte message to owner
+          wx.cloud.callFunction({
+            name: 'sendTemplateMessage',
+            data: {
+              title: this.data.item.title,
+              to: this.data.item.content[0].openId
+            }
+            })
         }
       },
       fail: err => {

@@ -106,6 +106,17 @@ Page({
   },
 
   async formSubmit(e) {
+    const fromId = e.detail.formId
+
+    db.collection('formId').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        formId: fromId,
+        createAt: new Date().getTime(),
+        openId: app.globalData.openId,
+        deleted: false
+      }
+    })
     if (doning) {
       return
     }

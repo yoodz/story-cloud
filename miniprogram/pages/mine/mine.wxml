@@ -1,32 +1,26 @@
-<!-- <cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}">
-  <view slot="backText">返回</view>
-  <view slot="content">我的</view>
-</cu-custom> -->
-
-<view class="top" style="background-image: url('../../images/bk-freeze.jpg')" bindtouchstart='touchStart' bindtouchend='touchEnd' bindtap='pressTap'>
-  <view class="cu-avatar xl round margin-left" style="background-image:url({{avatarUrl}});"></view>
-  <view>{{nickName}}</view>
-</view>
-
-  <view class="padding flex text-center text-grey bg-white shadow-warp">
-    <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-orange">0</view>
-      <view class="margin-top-sm">
-        <text class="icon-subscription"></text> 粉丝</view>
-    </view>
-    <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-blue">0</view>
-      <view class="margin-top-sm">
-        <text class="icon-favorfill"></text> 关注</view>
-    </view>
-    <view class="flex flex-sub flex-direction">
-      <view class="text-xxl text-green">0</view>
-      <view class="margin-top-sm">
-        <text class="icon-subscription"></text> 原创</view>
+<view class="top" bindtouchstart='touchStart' bindtouchend='touchEnd' bindtap='pressTap'>
+  <image class="bg-img" src="../../images/bk-freeze.jpg"></image>
+  <view class="absolute-view">
+    <view class="cu-avatar xl round mine-avatar" style="background-image:url({{avatarUrl}});"></view>
+    <view class="name">{{nickName}}</view>
+    <view class="flex text-center text-grey diy">
+      <view class="flex flex-sub flex-direction ">
+        <view class="text-xxl text-orange">0</view>
+        <view>
+          <text class="icon-subscription"></text> 粉丝</view>
+      </view>
+      <view class="flex flex-sub flex-direction solid-right">
+        <view class="text-xxl text-blue">0</view>
+        <view>
+          <text class="icon-favorfill"></text> 关注</view>
+      </view>
     </view>
   </view>
+</view>
 
-<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+
+
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius diy-mine-menu">
   <view class="cu-item arrow">
     <navigator class="content" url="/pages/myStoryList/myStoryList" hover-class="none">
       <!-- <image src="{{avatarUrl}}" class="png" mode="aspectFit"></image> -->

@@ -12,3 +12,8 @@
   z-index:999;
   opacity: 0;
 }
+
+.add-story-contain {
+  width: 93%;
+  margin: 0 auto;
+}

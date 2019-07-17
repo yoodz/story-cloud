@@ -1,5 +1,5 @@
-<cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}"><view slot="content">添加故事</view></cu-custom>
-<view>
+<cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}"><view slot="content">故事接龙Plus</view></cu-custom>
+<view class="add-story-contain">
   <scroll-view class='get-user-info'>
     <button
       wx:if='{{needOauth}}'
@@ -10,7 +10,7 @@
         获取用户信息
     </button>
   </scroll-view>
-  <form bindsubmit="formSubmit">
+  <form bindsubmit="formSubmit" report-submit="true">
     <view class="cu-form-group margin-top">
       <view class="title">标题</view>
       <input name="title" placeholder="请输入标题"></input>

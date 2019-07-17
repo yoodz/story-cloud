@@ -1,12 +1,52 @@
 /* pages/mine/mine.wxss */
 .top {
   text-align: center;
-  padding: 270rpx 50rpx 100rpx;
   /* background: linear-gradient(-45deg, #336799 0%, #66cdcc 100%); */
   background-size: contain;
   color: #fff;
+  position: relative;
+  height: 480rpx;
 }
 
 .top> view:first-child {
   margin-bottom: 30rpx;
+}
+
+.diy-mine-menu {
+  margin-top: 200rpx;
+}
+
+.name {
+  color: #333;
+  margin-top: 70rpx;
+  font-size: 38rpx;
+}
+
+.bg-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.diy {
+  margin-top: 35rpx;
+}
+
+.absolute-view {
+  width: 90%;
+  height: 300rpx;
+  background-color: #fff;
+  z-index: 3;
+  position: absolute;
+  bottom: -123rpx;
+  border-radius: 10rpx;
+  left: 5%;
+  box-shadow: 0 1px 3px rgba(70,70,70,.12), 0 1px 2px rgba(70,70,70,.24);
+}
+
+.mine-avatar {
+  position: absolute;
+  top: -70rpx;
+  left: 41%;
 }

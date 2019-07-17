@@ -1,5 +1,5 @@
 <cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}">
-  <view slot="content">广场</view>
+  <view slot="content">故事接龙Plus</view>
 </cu-custom>
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">最热</view>
