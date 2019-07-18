@@ -43,7 +43,7 @@
       <view class="title">只允许通过分享评论</view>
       <switch name="comment"></switch>
     </view>
-    <view class="padding flex flex-direction">
+    <view class="padding-diy flex flex-direction">
       <button form-type="submit" class="cu-btn bg-green lg">提交</button>
     </view>
   </form>

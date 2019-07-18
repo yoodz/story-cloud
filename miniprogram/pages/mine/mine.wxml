@@ -7,12 +7,12 @@
       <view class="flex flex-sub flex-direction ">
         <view class="text-xxl text-orange">0</view>
         <view>
-          <text class="icon-subscription"></text> 粉丝</view>
+          <text class="icon-likefill"></text> 点赞</view>
       </view>
       <view class="flex flex-sub flex-direction solid-right">
         <view class="text-xxl text-blue">0</view>
         <view>
-          <text class="icon-favorfill"></text> 关注</view>
+          <text class="icon-commentfill"></text> 评论</view>
       </view>
     </view>
   </view>
@@ -24,7 +24,20 @@
   <view class="cu-item arrow">
     <navigator class="content" url="/pages/myStoryList/myStoryList" hover-class="none">
       <!-- <image src="{{avatarUrl}}" class="png" mode="aspectFit"></image> -->
-      <text class="text-grey"> <text class="icon-list"></text> 我发布的</text>
+      <text class="icon-list text-cyan"></text>
+      <text class="text-grey">我发布的</text>
     </navigator>
+  </view>
+  <view class="cu-item arrow">
+      <view class="content" bindtap="CopyLink" data-link="https://github.com/yoodz/story-cloud">
+        <text class="icon-github text-grey"></text>
+        <text class="text-grey">GitHub</text>
+      </view>
+    </view>
+  <view class="cu-item arrow">
+    <button class="cu-btn content" open-type="feedback">
+      <text class="icon-writefill text-orange"></text>
+      <text class="text-grey">意见反馈</text>
+    </button>
   </view>
 </view>

@@ -26,7 +26,6 @@ Page({
       title: '加载中',
     })
     articalId = options.id
-    console.log(articalId)
     this._getData(articalId)
   },
 
@@ -59,7 +58,6 @@ Page({
     let days = ["今天", "一天前", "两天前", "三天前", "四天前", "五天前", "六天前", "一周前"]
     let tmpeTime = new Date().getTime() - timestamp
     let index = Math.floor(tmpeTime / 1000 / 60 / 60 / 24)
-    console.log(index)
     index = index > 7 ? 7 : index
     return days[index]
   },
@@ -100,7 +98,6 @@ Page({
         content
       },
       success: res => {
-        console.log(res)
         wx.hideLoading()
         doing = false
         if (res.result.stats.updated === 1) {
@@ -113,14 +110,7 @@ Page({
             mask: true
           })
           that._getData(articalId)
-          //send templte message to owner
-          wx.cloud.callFunction({
-            name: 'sendTemplateMessage',
-            data: {
-              title: this.data.item.title,
-              to: this.data.item.content[0].openId
-            }
-            })
+          that.sendTemplate()
         }
       },
       fail: err => {
@@ -136,6 +126,28 @@ Page({
         // ...
       }
     })
+  },
+
+  sendTemplate: function () {
+    let tmp = this.data.item.content.filter((item) => { return item.openId != app.globalData.openId })
+    let tmpArray = []
+    tmp.forEach((item)=> {
+      tmpArray.push(item.openId)
+    })
+    tmpArray = [...new Set(tmpArray)]
+    //send templte message to owner
+    tmpArray.forEach((openId)=> {
+      wx.cloud.callFunction({
+        name: 'sendTemplateMessage',
+        data: {
+          title: this.data.item.title,
+          to: openId,
+          nickName: app.globalData.nickName,
+          id: this.data.item._id
+        }
+      })
+    })
+
   },
 
   onGetUserInfo: function (e) {

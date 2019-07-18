@@ -17,3 +17,7 @@
   width: 93%;
   margin: 0 auto;
 }
+
+.padding-diy {
+  padding: 30rpx 0;
+}

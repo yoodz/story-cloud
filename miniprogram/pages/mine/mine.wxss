@@ -34,15 +34,15 @@
 }
 
 .absolute-view {
-  width: 90%;
+  width: 92%;
   height: 300rpx;
   background-color: #fff;
   z-index: 3;
   position: absolute;
   bottom: -123rpx;
-  border-radius: 10rpx;
-  left: 5%;
-  box-shadow: 0 1px 3px rgba(70,70,70,.12), 0 1px 2px rgba(70,70,70,.24);
+  border-radius: 20rpx;
+  left: 4%;
+  box-shadow: 0px 0px 10px 0px rgba(170,170,170, .7);
 }
 
 .mine-avatar {

@@ -17,6 +17,18 @@ Page({
   onLoad: function (options) {
   },
 
+  CopyLink(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.link,
+      success: res => {
+        wx.showToast({
+          title: '已复制',
+          duration: 1000,
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
