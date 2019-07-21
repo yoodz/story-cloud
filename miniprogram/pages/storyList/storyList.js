@@ -86,6 +86,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    currentPage = 1
     this.getList(0, [])
     db.collection('story').where({
       deleted: false

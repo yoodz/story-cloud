@@ -14,14 +14,22 @@
       <view>{{item.nickName}}</view>
       <text class="content">
         {{item.content}}
-      </text> 
+      </text>
       <!-- <view>{{item.formateData}}</view> -->
       <view>{{item.formateDay}}</view>
     </view>
   </view>
+  <view class="two-button">
+    <view class="forward">
+      <text class="icon-forward"></text>
+      <button open-type="share"></button>
+    </view>
+    <text wx:if="{{!like}}" class="icon-like" bindtap="likeStory"></text>
+    <text wx:if="{{like}}" class="icon-likefill" bindtap="likeStory"></text>
+  </view>
   <!-- <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button> -->
   <!-- 新增故事内容 -->
-  <view  class="cu-form-group margin-top userinfo-warap">
+  <view class="cu-form-group margin-top userinfo-warap">
     <button wx:if="{{needOauth}}" class="userinfo-button" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
     <textarea name="content" placeholder="点击此处输入内容" class="{{textareaBValue?'value':''}}" value='{{addContent}}' bindconfirm='formSubmit' bindblur='formSubmit'>
     </textarea>

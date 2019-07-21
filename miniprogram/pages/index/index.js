@@ -104,7 +104,6 @@ Page({
         wx.hideLoading()
         doing = false
         if (res.result.stats.updated === 1) {
-          console.log(3)
           that.setData({
             addContent: ''
           })

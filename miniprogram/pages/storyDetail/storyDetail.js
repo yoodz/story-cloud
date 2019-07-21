@@ -15,13 +15,14 @@ Page({
   data: {
     item: {},
     addContent: '',
-    needOauth: false
+    needOauth: false,
+    like: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.showLoading({
       title: '加载中',
     })
@@ -29,7 +30,7 @@ Page({
     this._getData(articalId)
   },
 
-  _getData: function (id) {
+  _getData: function(id) {
     let that = this
     const db = wx.cloud.database()
     db.collection('story').doc(id).get({
@@ -38,6 +39,7 @@ Page({
         let formatData = that.formateData(res.data)
         formatData.createTime = formatData.content[0].formateData.split(' ')[0]
         wx.hideLoading()
+        console.log(formatData)
         that.setData({
           'item': formatData
         })
@@ -45,7 +47,26 @@ Page({
     })
   },
 
-  formateData: function (data) {
+  likeStory: async function() {
+    console.log(articalId)
+    this.setData({
+      like: this.data.like ? false : true
+    })
+    console.log(this.data.like)
+
+    wx.cloud.callFunction({
+      name: 'like',
+      data: {
+        like: this.data.like,
+        articalId
+      },
+      success: res => {
+        console.log(res)
+      }
+    })
+  },
+
+  formateData: function(data) {
     let content = data.content
     for (let i in content) {
       content[i].formateData = this.formateTime(content[i].createAt)
@@ -54,7 +75,7 @@ Page({
     return data
   },
 
-  formateTimeByDay: function (timestamp) {
+  formateTimeByDay: function(timestamp) {
     let days = ["今天", "一天前", "两天前", "三天前", "四天前", "五天前", "六天前", "一周前"]
     let tmpeTime = new Date().getTime() - timestamp
     let index = Math.floor(tmpeTime / 1000 / 60 / 60 / 24)
@@ -62,7 +83,7 @@ Page({
     return days[index]
   },
 
-  formateTime: function (timestamp) {
+  formateTime: function(timestamp) {
     let Y, M, D, h, m, s
     let createTime = new Date(timestamp)
     Y = createTime.getFullYear() + '-';
@@ -74,9 +95,11 @@ Page({
     return Y + M + D + h + m + s;
   },
 
-  formSubmit: async function (e) {
+  formSubmit: async function(e) {
     let that = this
-    if (doing || e.detail.value === '') { return }
+    if (doing || e.detail.value === '') {
+      return
+    }
     wx.showLoading({
       title: '加载中',
     })
@@ -90,12 +113,12 @@ Page({
       avatarUrl: app.globalData.avatarUrl,
       nickName: app.globalData.nickName
     }
-
     wx.cloud.callFunction({
       name: 'addComment',
       data: {
         articalId,
-        content
+        content,
+        self: this.data.item._openid === app.globalData.openId
       },
       success: res => {
         wx.hideLoading()
@@ -128,15 +151,17 @@ Page({
     })
   },
 
-  sendTemplate: function () {
-    let tmp = this.data.item.content.filter((item) => { return item.openId != app.globalData.openId })
+  sendTemplate: function() {
+    let tmp = this.data.item.content.filter((item) => {
+      return item.openId != app.globalData.openId
+    })
     let tmpArray = []
-    tmp.forEach((item)=> {
+    tmp.forEach((item) => {
       tmpArray.push(item.openId)
     })
     tmpArray = [...new Set(tmpArray)]
     //send templte message to owner
-    tmpArray.forEach((openId)=> {
+    tmpArray.forEach((openId) => {
       wx.cloud.callFunction({
         name: 'sendTemplateMessage',
         data: {
@@ -150,7 +175,7 @@ Page({
 
   },
 
-  onGetUserInfo: function (e) {
+  onGetUserInfo: function(e) {
     if (e.detail.errMsg === 'getUserInfo:ok') {
       common.saveUserInfo(e)
       this.setData({
@@ -159,59 +184,69 @@ Page({
     }
   },
 
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: async function () {
+  onShow: async function() {
     let needOauth = await common.checkIsOauth()
     this.setData({
       needOauth
     })
-
+    console.log(app.globalData.openId, articalId)
+    let result = await db.collection('like').where({
+      openId: app.globalData.openId,
+      articalId: articalId
+    }).get()
+    console.log(result)
+    if (result.data.length !== 0) {
+      this.setData({ like: result.data[0].deleted ? false : true })
+    }
     wx.cloud.callFunction({
       name: 'updatePv',
       data: {
         articalId
       }
     })
+
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

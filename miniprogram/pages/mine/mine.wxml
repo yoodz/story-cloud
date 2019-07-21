@@ -5,12 +5,12 @@
     <view class="name">{{nickName}}</view>
     <view class="flex text-center text-grey diy">
       <view class="flex flex-sub flex-direction ">
-        <view class="text-xxl text-orange">0</view>
+        <view class="text-xxl text-orange">{{likeCount}}</view>
         <view>
           <text class="icon-likefill"></text> 点赞</view>
       </view>
       <view class="flex flex-sub flex-direction solid-right">
-        <view class="text-xxl text-blue">0</view>
+        <view class="text-xxl text-blue">{{commonsCount}}</view>
         <view>
           <text class="icon-commentfill"></text> 评论</view>
       </view>
@@ -18,12 +18,9 @@
   </view>
 </view>
 
-
-
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius diy-mine-menu">
   <view class="cu-item arrow">
     <navigator class="content" url="/pages/myStoryList/myStoryList" hover-class="none">
-      <!-- <image src="{{avatarUrl}}" class="png" mode="aspectFit"></image> -->
       <text class="icon-list text-cyan"></text>
       <text class="text-grey">我发布的</text>
     </navigator>

@@ -1,5 +1,9 @@
 // pages/mine/mine.js
 const app = getApp()
+const dbUtil = require('../../utils/db')
+const common = require('../../utils/common')
+const regeneratorRuntime = require("../../utils/runtime")
+const db = dbUtil.getDbInstance()
 
 Page({
 
@@ -8,7 +12,8 @@ Page({
    */
   data: {
     avatarUrl: '',
-    nickName: ''
+    nickName: '',
+    likeCount: 0
   },
 
   /**
@@ -39,10 +44,18 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: async function () {
+    let result = await db.collection('like').where({
+      openId: app.globalData.openId
+    }).get()
+    let commonsCount = await db.collection('commons').where({
+      openId: app.globalData.openId
+    }).get()
     this.setData({
       avatarUrl: app.globalData.avatarUrl,
-      nickName: app.globalData.nickName
+      nickName: app.globalData.nickName,
+      likeCount: result.data.length,
+      commonsCount: commonsCount.data.length
     })
   },
 

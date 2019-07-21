@@ -4,6 +4,26 @@
   border-radius: 10rpx 10rpx 0 0;
 }
 
+.forward {
+  position: relative;
+}
+
+.two-button {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+
+.forward button {
+  position: absolute;
+  width: 20rpx;
+  height: 40rpx;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 .content-title {
   font-size: 40rpx;
   font-weight: bold;
