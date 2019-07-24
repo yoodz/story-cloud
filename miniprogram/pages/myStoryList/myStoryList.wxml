@@ -1,15 +1,18 @@
-<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+<cu-custom bgColor="bg-gradual-other-green" isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content">我的</view>
+  <view slot="content">故事接龙Plus</view>
 </cu-custom>
 
 <view class='main-content'>
   <view class='every-item' wx:for="{{storyList}}" wx:key data-id='{{item._id}}' bindtap="toDetail">
+    <image class='image-style' src='{{item.imgUrl}}' mode='aspectFill'></image>
     <view class='item-title'>{{item.title}}</view>
-    <view>{{item.content[0].content}}</view>
-    <image class='image-style' src='{{item.imgUrl}}' mode='widthFix'></image>
+    <view class="icon-content">
+      <text class="icon-attention"></text> {{item.view}}
+      <text class="icon-like second-view"></text> {{item.like}}
+    </view>
   </view>
-  <form>
+  <!-- <form>
     <button class='btn-add-story' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" bindtap='createStory'>新增</button>
-  </form>
+  </form> -->
 </view>

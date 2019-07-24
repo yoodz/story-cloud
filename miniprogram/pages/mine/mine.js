@@ -47,15 +47,23 @@ Page({
   onShow: async function () {
     let result = await db.collection('like').where({
       openId: app.globalData.openId
-    }).get()
+    }).count()
     let commonsCount = await db.collection('commons').where({
       openId: app.globalData.openId
-    }).get()
+    }).count()
     this.setData({
       avatarUrl: app.globalData.avatarUrl,
       nickName: app.globalData.nickName,
-      likeCount: result.data.length,
-      commonsCount: commonsCount.data.length
+      likeCount: result.total,
+      commonsCount: commonsCount.total
+    })
+  },
+
+  toDetail(e) {
+    let type = e.currentTarget.dataset.type
+    console.log(type)
+    wx.navigateTo({
+      url: '/pages/startCommon/startCommon?type=' + type,
     })
   },
 

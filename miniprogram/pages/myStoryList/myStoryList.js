@@ -1,7 +1,9 @@
-// pages/myStoryList/myStoryList.js
+const app = getApp()
 const dbUtil = require('../../utils/db')
 const db = dbUtil.getDbInstance()
-const app = getApp()
+let currentPage = 1
+let pageSize = 20
+let totalPage = 1
 
 Page({
 
@@ -44,13 +46,38 @@ Page({
    */
   onShow: function () {
     let that = this
-    db.collection('story').where({ '_openid': app.globalData.openId})
+    db.collection('story').where({
+      deleted: false,
+      '_openid': app.globalData.openId
+    }).count({
+      success: function (res) {
+        console.log(app.globalData.openId)
+        console.log(res.total)
+        totalPage = Math.ceil(res.total / pageSize);
+        console.log(totalPage)
+        that.getList(0, [])
+      }
+    })
+  },
+
+  getList: function (skipPage, storyList) {
+    let that = this
+    db.collection('story').where({
+      deleted: false,
+      '_openid': app.globalData.openId
+    })
+      .skip(skipPage * pageSize) // 跳过结果集中的前 10 条，从第 11 条开始返回
+      .limit(pageSize) // 限制返回数量为 10 条
+      .orderBy('createAt', 'desc')
       .get({
         success(res) {
           // res.data 是包含以上定义的两条记录的数组
-          console.log(res.data)
+          res.data.some((item) => { storyList.push(item) })
+          wx.hideLoading()
+          console.log(storyList)
           that.setData({
-            storyList: res.data
+            storyList,
+            loading: false
           })
         }
       })
@@ -81,7 +108,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if (++currentPage > totalPage) return
+    wx.showLoading({
+      title: '加载中',
+    })
 
+    currentPage = ++currentPage > totalPage ? totalPage : currentPage++
+    console.log(currentPage, totalPage)
+    this.getList(currentPage - 1, this.data.storyList)
   },
 
   /**
