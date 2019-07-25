@@ -5,6 +5,7 @@ let currentPage = 1
 let pageSize = 20
 let totalPage = 1
 let dbName = 'like'
+let likes = []
 
 Page({
 
@@ -40,10 +41,12 @@ Page({
   _getData: async function(dbName, skipPage, storyList) {
     let that = this
     db.collection(dbName).where({
-        openId: app.globalData.openId
+        openId: app.globalData.openId,
+        deleted: false
       })
       .skip(skipPage * pageSize) // 跳过结果集中的前 10 条，从第 11 条开始返回
       .limit(pageSize) // 限制返回数量为 10 条
+      .orderBy('createAt', 'desc')
       .get({
         success: async function(res) {
           // res.data 是包含以上定义的两条记录的数组
@@ -56,6 +59,20 @@ Page({
       })
   },
 
+  formateLike: function (storyList) {
+    storyList.forEach((item) => {
+      console.log(item)
+      console.log(likes)
+      if (likes.indexOf(item._id) !== -1) {
+        item.isLike = true
+      } else {
+        item.isLike = false
+      }
+    })
+    console.log(storyList)
+    return storyList
+  },
+
   formateData: async function(storyList) {
     let that = this
     const tasks = []
@@ -66,7 +83,11 @@ Page({
     Promise.all(tasks).then(function (values) {
       let result = []
       for (const item of values) {
-        console.log(item.data);
+        if (likes.indexOf(item.data._id) !== -1) {
+          item.data.isLike = true
+        } else {
+          item.data.isLike = false
+        }
         result.push(item.data)
       }
       that.setData({
@@ -99,11 +120,25 @@ Page({
 
   },
 
+  formateToArray: function (likes) {
+    let result = []
+    likes.forEach((item) => {
+      result.push(item.articalId)
+    })
+    return result
+  },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: async function() {
+    let that = this
+    await wx.cloud.callFunction({
+      name: 'getAllLike',
+      success: res => {
+        likes = that.formateToArray(res.result.data)
+      }
+    })
+    that._getData(dbName, 0, [])
   },
 
   /**

@@ -15,7 +15,8 @@
         <view>{{item.title}}</view>
         <view>
           <text class="icon-attention"></text> {{item.view}}
-          <text class="icon-like second-view"></text> {{item.like}}</view>
+          <text wx:if="{{!item.isLike}}" class="icon-like second-view"></text>
+          <text wx:if="{{item.isLike}}" class="icon-likefill second-view"></text> {{item.like}}</view>
       </view>
     </block>
     <block>
@@ -24,7 +25,8 @@
         <view>{{item.title}}</view>
         <view>
           <text class="icon-attention"></text> {{item.view}}
-          <text class="icon-like second-view"></text> {{item.like}}</view>
+          <text wx:if="{{!item.isLike}}" class="icon-like second-view"></text>
+          <text wx:if="{{item.isLike}}" class="icon-likefill second-view"></text> {{item.like}}</view>
       </view>
     </block>
   </view>
@@ -35,7 +37,8 @@
         <view>{{item.title}}</view>
         <view>
           <text class="icon-attention"></text> {{item.view}}
-          <text class="icon-like second-view"></text> {{item.like}}</view>
+          <text wx:if="{{!item.isLike}}" class="icon-like second-view"></text>
+          <text wx:if="{{item.isLike}}" class="icon-likefill second-view"></text> {{item.like}}</view>
       </view>
     </block>
     <block>
@@ -44,7 +47,8 @@
         <view>{{item.title}}</view>
         <view>
           <text class="icon-attention"></text> {{item.view}}
-          <text class="icon-like second-view"></text> {{item.like}}</view>
+          <text wx:if="{{!item.isLike}}" class="icon-like second-view"></text>
+          <text wx:if="{{item.isLike}}" class="icon-likefill second-view"></text> {{item.like}}</view>
       </view>
     </block>
   </view>

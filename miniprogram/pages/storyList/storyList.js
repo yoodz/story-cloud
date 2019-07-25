@@ -7,6 +7,7 @@ let currentPage = 1
 let pageSize = 20
 let totalPage = 1
 let sortBy = 'like'
+let likes = []
 
 Page({
 
@@ -38,7 +39,6 @@ Page({
       } else {
         sortBy = 'like'
       }
-      console.log(sortBy)
 
       this.getList(0, [])
       that.setData({
@@ -78,47 +78,69 @@ Page({
     })
   },
 
+  formateToArray: function (likes) {
+    let result = []
+    likes.forEach((item) => {
+      result.push(item.articalId)
+    })
+    return result
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: async function () {
+    let that = this
+    await wx.cloud.callFunction({
+      name: 'getAllLike',
+      success: res => {
+        likes = that.formateToArray(res.result.data)
+      }})
     wx.showLoading({
       title: '加载中',
     })
     currentPage = 1
-    this.getList(0, [])
     db.collection('story').where({
       deleted: false
     }).count({
       success: function (res) {
-        console.log(res.total)
         totalPage = Math.ceil(res.total / pageSize);
-        console.log(totalPage)
+        that.getList(0, [])
       }
     })
   },
 
   getList: function (skipPage, storyList) {
     let that = this
-    console.log(sortBy)
     db.collection('story').where({
       deleted: false
     })
-      .skip(skipPage * pageSize) // 跳过结果集中的前 10 条，从第 11 条开始返回
-      .limit(pageSize) // 限制返回数量为 10 条
+      .skip(skipPage * pageSize) // 跳过结果集中的前 20 条，从第 21 条开始返回
+      .limit(pageSize) // 限制返回数量为 20 条
       .orderBy(sortBy, 'desc')
       .get({
         success(res) {
           // res.data 是包含以上定义的两条记录的数组
-          res.data.some((item) => { storyList.push(item)})
+          res.data.some((item) => { storyList.push(item) })
           wx.hideLoading()
-          console.log(storyList)
+          storyList = that.formateData(storyList)
           that.setData({
             storyList,
             loading: false
           })
         }
       })
+  },
+
+  formateData: function (storyList) {
+    storyList.forEach((item)=> {
+      if (likes.indexOf(item._id) !== -1) {
+        item.isLike = true
+      } else {
+        item.isLike = false
+      }
+    })
+    return storyList
   },
 
   onHide: function () {
@@ -152,7 +174,6 @@ Page({
     })
 
     currentPage = ++currentPage > totalPage ? totalPage : currentPage++
-    console.log(currentPage, totalPage)
     this.getList(currentPage - 1, this.data.storyList)
   },
 

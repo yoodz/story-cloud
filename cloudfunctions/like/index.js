@@ -31,7 +31,8 @@ exports.main = async(event, context) => {
         data: {
           articalId: event.articalId,
           deleted: false,
-          openId: wxContext.OPENID
+          openId: wxContext.OPENID,
+          createAt: new Date().getTime()
         }
       })
     } else {

@@ -3,10 +3,16 @@
   <view slot="content">故事接龙Plus</view>
 </cu-custom>
 
-<view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}"  data-id='{{item._id}}' bindtap="toDetail">
-  <image mode="widthFix" src="{{item.imgUrl}}"></image>
-  <view>{{item.title}}</view>
-  <view>
-    <text class="icon-attention"></text> {{item.view}}
-    <text class="icon-like second-view"></text> {{item.like}}</view>
+<view class="main-content">
+  <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" data-id='{{item._id}}' bindtap="toDetail">
+    <image mode='aspectFill' src="{{item.imgUrl}}"></image>
+    <view class="right-content">
+      <view>{{item.title}}</view>
+      <view class="icon-content">
+        <text class="icon-attention"></text> {{item.view}}
+        <text wx:if="{{!item.isLike}}" class="icon-like second-view"></text>
+        <text wx:if="{{item.isLike}}" class="icon-likefill second-view"></text> {{item.like}}
+      </view>
+    </view>
+  </view>
 </view>

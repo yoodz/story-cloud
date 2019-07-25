@@ -9,7 +9,7 @@
     <text class="icon-time"></text> {{item.createTime}}
     <text class="icon-attention margin-left-10"></text> {{item.view}}</view>
   <view class="cu-item every-item" wx:for="{{item.content}}" wx:key>
-    <image class='cu-avatar lg round' src='{{item.avatarUrl}}'></image>
+    <image class='cu-avatar round' src='{{item.avatarUrl}}'></image>
     <view class="every-item-right">
       <view>{{item.nickName}}</view>
       <text class="content">

@@ -46,10 +46,12 @@ Page({
    */
   onShow: async function () {
     let result = await db.collection('like').where({
-      openId: app.globalData.openId
+      openId: app.globalData.openId,
+      deleted: false
     }).count()
     let commonsCount = await db.collection('commons').where({
-      openId: app.globalData.openId
+      openId: app.globalData.openId,
+      deleted: false
     }).count()
     this.setData({
       avatarUrl: app.globalData.avatarUrl,
