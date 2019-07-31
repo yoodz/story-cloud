@@ -1,6 +1,7 @@
 // pages/storyList/storyList.js
 // const db = wx.cloud.database()
 const dbUtil = require('../../utils/db')
+const common = require('../../utils/common')
 const db = dbUtil.getDbInstance()
 const app = getApp()
 let currentPage = 1
@@ -8,6 +9,7 @@ let pageSize = 20
 let totalPage = 1
 let sortBy = 'like'
 let likes = []
+
 
 Page({
 
@@ -86,10 +88,28 @@ Page({
     return result
   },
 
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+    app.globalData.showModal = true
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: async function () {
+    console.log(app.globalData.openId)
+    if (!app.globalData.openId) {
+      await common.getOpenId()
+    }
+    let userFromDb = await db.collection('user').where({ _openid: app.globalData.openId }).get()
+    console.log(userFromDb)
+    if (userFromDb.data.length === 0) {
+      this.setData({
+        modalName: 'Image'
+      })
+    }
+
     let that = this
     await wx.cloud.callFunction({
       name: 'getAllLike',

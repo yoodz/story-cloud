@@ -4,7 +4,7 @@
       <text class="icon-back"></text>
       <slot name="backText"></slot>
     </view>
-    <view class="action border-custom"  wx:if="{{isCustom}}" style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+    <view class="action border-custom" wx:if="{{isCustom}}" style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
       <text class="icon-back" bindtap="BackPage"></text>
       <text class="icon-homefill" bindtap="toHome"></text>
     </view>

@@ -1,5 +1,25 @@
 <cu-custom bgColor="bg-gradual-other-green" isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content">我的</view>
+  <view slot="content">故事接龙Plus</view>
 </cu-custom>
-欢迎来到管理员页面
+<view class="main-content">
+  <view class="flex-wrap" wx:for="{{storyList}}" wx:key="{{index}}" data-id='{{item._id}}'>
+    <image mode='aspectFill' src="{{item.imgUrl}}"></image>
+    <view class="right-content">
+      <view>{{item.title}}</view>
+      <view class="icon-content">
+        <switch name="comment" bindchange="changeStatus" data-id='{{item._id}}' checked="{{item.deleted}}"></switch>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="modal" wx:if="{{show}}">
+  <form bindsubmit="checkPs">
+    <view class="message">闲人误闯禁地，还不快快退出</view>
+    <input class="input-number" name="ps" type='number'></input>
+    <view class="two-button">
+      <button class="cu-btn bg-red lg" form-type="submit">退出</button>
+      <button class="cu-btn bg-red lg" form-type="submit">不退</button>
+    </view>
+  </form>
+</view>

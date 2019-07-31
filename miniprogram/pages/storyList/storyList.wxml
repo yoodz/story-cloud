@@ -1,10 +1,29 @@
 <cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}">
   <view slot="content">故事接龙Plus</view>
 </cu-custom>
-<view class="swiper-tab">
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-dialog bg-gradual-other-green">
+    <view class="word-content">
+      <view>规则介绍</view>
+      <view>根据故事的前半部分情节，大家自由的接出故事下面的发展情节。</view>
+      <view>内容要求不得出现反动及淫秽内容描写。</view>
+      <view>请注意文明用语，不得出现侮辱谩骂的语言，不得出现不文明用语。</view>
+      <view>留言内容应为本人原创，不要抄袭他人及转载。</view>
+      <view>跟帖方式为“时间顺序”，从上至下浏览阅读即可。</view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">我知道了</view>
+    </view>
+  </view>
+</view>
+<scroll-view scroll-x class="bg-white nav text-center">
+  <view class="cu-item {{currentTab==0?'on cur':''}}" bindtap="swichNav" data-current="0">最热</view>
+  <view class="cu-item {{currentTab==1?'on cur':''}}" bindtap="swichNav" data-current="1">最新</view>
+</scroll-view>
+<!-- <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">最热</view>
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">最新</view>
-</view>
+</view> -->
 
 <view class="free-WaterfallFlow">
   <view class="no-message" wx:if="{{storyList.length < 1 && !loading}}">还没有消息(⊙﹏⊙)</view>

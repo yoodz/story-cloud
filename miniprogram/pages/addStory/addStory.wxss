@@ -7,6 +7,14 @@
   top:8rpx !important;
 }
 
+.img-bg {
+  width: 100%;
+}
+
+.img-bg-2 {
+  width: 100%;
+}
+
 .button-style {
   position: fixed;
   z-index:999;

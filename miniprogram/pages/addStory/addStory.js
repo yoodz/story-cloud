@@ -14,7 +14,8 @@ Page({
     imgUrl: '',
     windowHeight: app.globalData.windowHeight,
     windowWidth: app.globalData.windowWidth,
-    needOauth: false
+    needOauth: false,
+    hidden: true
   },
 
   /**
@@ -107,16 +108,7 @@ Page({
 
   async formSubmit(e) {
     const fromId = e.detail.formId
-
-    db.collection('formId').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        formId: fromId,
-        createAt: new Date().getTime(),
-        openId: app.globalData.openId,
-        deleted: false
-      }
-    })
+    common.addFormId(fromId)
     if (doning) {
       return
     }
@@ -174,6 +166,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: async function () {
+    if (new Date().getTime() > 1564761600000) {
+      this.setData({hidden: false})
+    }
     let needOauth = await common.checkIsOauth()
     this.setData({
       needOauth

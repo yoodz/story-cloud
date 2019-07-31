@@ -1,15 +1,34 @@
 const dbUtil = require('./db')
 const app = getApp()
+const regeneratorRuntime = require("./runtime")
+const db = dbUtil.getDbInstance()
 
-function randomString () {
+function randomString() {
   return Math.random().toString(36).substr(2) + new Date().getTime()
 }
 
-function checkIsOauth () {
+function checkIsOauth() {
   return new Promise((resolve) => {
     wx.getSetting({
       success: res => {
         resolve(!res.authSetting['scope.userInfo'])
+      }
+    })
+  })
+}
+
+async function getOpenId() {
+  return new Promise((resolve) => {
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log(res)
+        resolve(app.globalData.openId)
+        app.globalData.openId = res.result.openid
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
       }
     })
   })
@@ -33,8 +52,19 @@ function getUserInfo() {
   })
 }
 
-async function saveUserInfo (e) {
-  const db = dbUtil.getDbInstance()
+function addFormId(fromId) {
+  db.collection('formId').add({
+    // data 字段表示需新增的 JSON 数据
+    data: {
+      formId: fromId,
+      createAt: new Date().getTime(),
+      openId: app.globalData.openId,
+      deleted: false
+    }
+  })
+}
+
+async function saveUserInfo(e) {
   console.log(e.detail.userInfo)
   let userInfo = e.detail.userInfo
   let that = this
@@ -55,7 +85,7 @@ async function saveUserInfo (e) {
   app.globalData.nickName = userData.nickName
 
   if (e.detail.userInfo) {
-    let userFromDb = await db.collection('user').where({}).get()
+    let userFromDb = await db.collection('user').where({ _openid: app.globalData.openId }).get()
     console.log(userFromDb.data.length)
     if (userFromDb.data.length === 0) {
       db.collection('user').add({
@@ -75,9 +105,11 @@ async function saveUserInfo (e) {
   }
 }
 
-module.exports = { 
+module.exports = {
   randomString,
   checkIsOauth,
   getUserInfo,
-  saveUserInfo
+  saveUserInfo,
+  addFormId,
+  getOpenId
 };

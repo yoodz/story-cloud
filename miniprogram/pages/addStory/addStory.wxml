@@ -1,5 +1,5 @@
 <cu-custom bgColor="bg-gradual-other-green" isBack="{{false}}"><view slot="content">故事接龙Plus</view></cu-custom>
-<view class="add-story-contain">
+<view hidden='{{hidden}}' class="add-story-contain">{{hidden}}
   <scroll-view class='get-user-info'>
     <button
       wx:if='{{needOauth}}'
@@ -47,4 +47,9 @@
       <button form-type="submit" class="cu-btn bg-green lg">提交</button>
     </view>
   </form>
+</view>
+<view hidden='{{!hidden}}'>
+<image class="img-bg" src="../../images/banner.jpg"></image>
+<image class="img-bg-2" src="../../images/banner2.png"></image>
+
 </view>

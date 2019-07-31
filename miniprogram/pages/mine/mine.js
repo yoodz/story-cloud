@@ -23,14 +23,24 @@ Page({
   },
 
   CopyLink(e) {
+    const fromId = e.detail.formId
+    common.addFormId(fromId)
     wx.setClipboardData({
-      data: e.currentTarget.dataset.link,
+      data: 'https://github.com/yoodz/story-cloud',
       success: res => {
         wx.showToast({
           title: '已复制',
           duration: 1000,
         })
       }
+    })
+  },
+
+  toStoryList: function (e) {
+    const fromId = e.detail.formId
+    common.addFormId(fromId)
+    wx.navigateTo({
+      url: '/pages/myStoryList/myStoryList',
     })
   },
 
@@ -74,6 +84,17 @@ Page({
    */
   onHide: function () {
 
+  },
+
+  async onGetUserInfo(e) {
+    if (e.detail.errMsg === 'getUserInfo:ok') {
+      await common.saveUserInfo(e)
+      this.setData({
+        avatarUrl: app.globalData.avatarUrl,
+        nickName: app.globalData.nickName,
+        needOauth: false
+      })
+    }
   },
 
   /**

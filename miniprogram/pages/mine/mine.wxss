@@ -8,6 +8,25 @@
   height: 480rpx;
 }
 
+.display-form {
+  width: 100%;
+}
+
+.icon-diy {
+  margin-left: 10rpx;
+}
+
+.disply-button {
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  font-size: 30rpx;
+}
+
+.disply-button::after{ border: none; }
+
 .top> view:first-child {
   margin-bottom: 30rpx;
 }
@@ -20,6 +39,7 @@
   color: #333;
   margin-top: 70rpx;
   font-size: 38rpx;
+  min-height: 42rpx;
 }
 
 .bg-img {

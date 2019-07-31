@@ -1,7 +1,8 @@
 <view class="top" bindtouchstart='touchStart' bindtouchend='touchEnd' bindtap='pressTap'>
   <image class="bg-img" src="../../images/bk-freeze.jpg"></image>
   <view class="absolute-view">
-    <view class="cu-avatar xl round mine-avatar" style="background-image:url({{avatarUrl}});"></view>
+    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="cu-avatar xl round mine-avatar" style="background-image: url({{avatarUrl}})"></button>
+    <!-- <view class="cu-avatar xl round mine-avatar" style="background-image:url({{avatarUrl}});"></view> -->
     <view class="name">{{nickName}}</view>
     <view class="flex text-center text-grey diy">
       <view class="flex flex-sub flex-direction " data-type='start' bindtap="toDetail">
@@ -20,17 +21,26 @@
 
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius diy-mine-menu">
   <view class="cu-item arrow">
-    <navigator class="content" url="/pages/myStoryList/myStoryList" hover-class="none">
-      <text class="icon-list text-cyan"></text>
-      <text class="text-grey">我发布的</text>
-    </navigator>
+    <form bindsubmit="toStoryList" report-submit="true" class="display-form">
+      <button class="disply-button" form-type="submit">
+        <!-- <navigator class="content" url="/pages/myStoryList/myStoryList" hover-class="none"> -->
+          <text class="icon-list text-cyan icon-diy"></text>
+          <text class="text-grey icon-diy">我发布的</text>
+        <!-- </navigator> -->
+      </button>
+    </form>
   </view>
   <view class="cu-item arrow">
-      <view class="content" bindtap="CopyLink" data-link="https://github.com/yoodz/story-cloud">
-        <text class="icon-github text-grey"></text>
-        <text class="text-grey">GitHub</text>
-      </view>
-    </view>
+    <form bindsubmit="CopyLink" report-submit="true" class="display-form">
+      <button class="disply-button" form-type="submit">
+        <view class="content" bindtap="CopyLink">
+          <text class="icon-github text-grey"></text>
+          <text class="text-grey">GitHub</text>
+        </view>
+      </button>
+    </form>
+  </view>
+
   <view class="cu-item arrow">
     <button class="cu-btn content" open-type="feedback">
       <text class="icon-writefill text-orange"></text>

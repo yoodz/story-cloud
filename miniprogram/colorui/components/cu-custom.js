@@ -5,7 +5,8 @@ Component({
    */
   options: {
     addGlobalClass: true,
-    multipleSlots: true
+    multipleSlots: true,
+    showModal: true
   },
   /**
    * 组件的对外属性
@@ -46,6 +47,10 @@ Component({
       if (pageInfo[0].route === "pages/storyDetail/storyDetail") {
         wx.reLaunch({
           url: '/pages/storyList/storyList',
+        })
+      } else if (pageInfo.length === 2 && pageInfo[1].route === "pages/startCommon/startCommon") {
+        wx.reLaunch({
+          url: '/pages/mine/mine',
         })
       } else {
         wx.navigateBack({

@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/storyList/storyList",
+    "pages/addStory/addStory",
+    "pages/admin/admin",
+    "pages/index/index",
     "pages/startCommon/startCommon",
     "pages/myStoryList/myStoryList",
     "pages/mine/mine",
-    "pages/admin/admin",
     "pages/testFunction/testFunction",
-    "pages/index/index",
-    "pages/addStory/addStory",
     "pages/storyDetail/storyDetail",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

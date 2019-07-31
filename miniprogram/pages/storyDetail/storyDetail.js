@@ -96,8 +96,10 @@ Page({
   },
 
   formSubmit: async function(e) {
+    const fromId = e.detail.formId
+    common.addFormId(fromId)
     let that = this
-    if (doing || e.detail.value === '') {
+    if (doing || e.detail.value.content === '') {
       return
     }
     wx.showLoading({
@@ -107,7 +109,7 @@ Page({
 
     let content = {
       createAt: new Date().getTime(),
-      content: e.detail.value,
+      content: e.detail.value.content,
       deleted: false,
       openId: app.globalData.openId,
       avatarUrl: app.globalData.avatarUrl,

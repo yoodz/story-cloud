@@ -29,9 +29,15 @@
   </view>
   <!-- <button wx:if="{{needOauth}}" class='btn bg-green' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button> -->
   <!-- 新增故事内容 -->
-  <view class="cu-form-group margin-top userinfo-warap">
-    <button wx:if="{{needOauth}}" class="userinfo-button" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
-    <textarea name="content" placeholder="点击此处输入内容" class="{{textareaBValue?'value':''}}" value='{{addContent}}' bindconfirm='formSubmit' bindblur='formSubmit'>
-    </textarea>
-  </view>
+
+  <form bindsubmit="formSubmit" report-submit="true">
+    <view class="cu-form-group margin-top userinfo-warap">
+      <button wx:if="{{needOauth}}" class="userinfo-button" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">新增故事内容</button>
+      <textarea name="content" placeholder="点击此处输入内容" class="{{textareaBValue?'value':''}}" value='{{addContent}}'>
+      </textarea>
+      <view class="padding-diy flex flex-direction">
+        <button form-type="submit" class="cu-btn bg-green lg">提交</button>
+      </view>
+    </view>
+  </form>
 </view>

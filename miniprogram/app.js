@@ -33,6 +33,7 @@ App({
         let custom = wx.getMenuButtonBoundingClientRect();
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - res.statusBarHeight;
+        this.globalData.showModal = false;
       }
     })
 
@@ -42,10 +43,5 @@ App({
         this.globalData.nickName = res.userInfo.nickName
       }
     })
-    // wx.login({
-    //   success(res) {
-    //     console.log(res.code)
-    //   }
-    // })
   }
 })

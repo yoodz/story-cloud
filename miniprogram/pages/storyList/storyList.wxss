@@ -2,6 +2,28 @@ page {
   background-color: #fff;
 }
 
+.word-content {
+  color: #fff;
+  text-align: left;
+  padding: 40rpx;
+}
+
+.bg-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.word-content view:nth-child(1) {
+  text-align: center;
+  font-size: 60rpx;
+}
+
+.word-content view:not(:first-child) {
+  margin-top: 20rpx;
+}
+
 .no-message {
  text-align: center;
   width: 100%;
@@ -13,7 +35,7 @@ page {
   column-count: 2; /*column-count 属性规定元素应该被分隔的列数：*/
   margin: 0 auto;
   background-color: #fff;
-  padding-top: 124rpx;
+  padding-top: 20rpx;
 }
 
 .free-WaterfallFlow .flex-wrap {
@@ -69,10 +91,7 @@ page{
 }
 
 .on {
-  font-size: 43rpx;
-  position: relative;
   color: var(--mygreen);
-  font-weight: 500;
 }
 
 /* .on::before {
